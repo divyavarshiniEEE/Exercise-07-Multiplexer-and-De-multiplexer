@@ -47,42 +47,115 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
  
 ### Procedure
-/* write all the steps invloved */
+
+Start the module using module projname().
+
+Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+
+Use wire to assign intermediate outputs.
+
+Use and, or and not gates to get the desired output
+
+End the module
+
+Generate RTL realization and timing diagram.
 
 
 
 ### PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+
+1x4 Multiplexer:
+
+module mux(I0,I1,I2,I3,S0,S1,Y);
+
+input I0,I1,I2,I3,S0,S1;
+
+output Y;
+
+wire S0C,S1C;
+
+not (S0C,S0);
+
+not (S1C,S1);
+
+wire P,Q,R,S;
+
+and (P,S0C,S1C,I0);
+
+and (Q,S0C,S1,I1);
+
+and (R,S0,S1C,I2);
+
+and (S,S0,S1,I3);
+
+or (Y,P,Q,R,S);
+
+endmodule
+
+4x1 Demultiplexer:
+
+module demux(Y0,Y1,Y2,Y3,S0,S1,I);
+
+input S0,S1,I;output Y0,Y1,Y2,Y3;
+
+wire S0C,S1C;
+
+nor (S0C,S0);
+
+nor (S1C,S1);
+
+and (Y0,I,S0C,S1C);
+
+and (Y1,I,S0C,S1);
+
+and (Y2,I,S0,S1C);
+
+and (Y3,I,S0,S1);
+
+endmodule
+
+
+Developed by: DIVYAVARSHINI KS
+RegisterNumber:  212222050012
 */
-
-
-
-
 
 
 ### RTL LOGIC  
 
+MULTIPLEXER
+
+![multi rtl](https://github.com/divyavarshiniEEE/Exercise-07-Multiplexer-and-De-multiplexer/assets/128978058/7b728ba3-fa88-497c-9251-5c6ee0b27694)
 
 
+DEMULTIPLEXER
 
-
-
+![dem rtl](https://github.com/divyavarshiniEEE/Exercise-07-Multiplexer-and-De-multiplexer/assets/128978058/41a2c4c1-793b-4c2a-ab5b-827e0820e6f8)
 
 
 ### TIMING DIGRAMS  
 
+MULTIPLEXER
 
+![multi timing](https://github.com/divyavarshiniEEE/Exercise-07-Multiplexer-and-De-multiplexer/assets/128978058/b680c151-c752-4356-bd50-5990eb9b1663)
 
+DEMULTIPLEXER
+
+![demulti timing](https://github.com/divyavarshiniEEE/Exercise-07-Multiplexer-and-De-multiplexer/assets/128978058/51a11ee0-7996-47d5-85d8-96dc2de167ad)
 
 
 ### TRUTH TABLE 
 
+MULTIPLEXER
 
+![mul truth](https://github.com/divyavarshiniEEE/Exercise-07-Multiplexer-and-De-multiplexer/assets/128978058/918dc077-d455-45df-be2d-8d939d33d7fe)
 
+DEMULTIPLEXER
 
+![demulti truth](https://github.com/divyavarshiniEEE/Exercise-07-Multiplexer-and-De-multiplexer/assets/128978058/3440edf4-ea64-4c55-88cc-cce3f0d9c623)
 
 
 ### RESULTS 
+
+Hence, 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.
